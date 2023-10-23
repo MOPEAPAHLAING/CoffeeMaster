@@ -19,23 +19,13 @@ import com.coffee.coffeemaster.pages.InfoPage
 import com.coffee.coffeemaster.pages.MenuPage
 import com.coffee.coffeemaster.pages.OfferPage
 import com.coffee.coffeemaster.pages.OrderPage
-import com.coffee.coffeemaster.ui.theme.CoffeeMasterTheme
 import com.coffee.coffeemaster.ui.theme.Primary
 import com.coffee.coffeemaster.ui.theme.Secondary
-
-
-@Preview()
-@Composable
-fun AppPreview() {
-    CoffeeMasterTheme {
-        App()
-    }
-}
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun App() {
+fun App(dataManager: DataManager) {
     var selectedRoute = remember {
         mutableStateOf(Routes.MenuPage.route)
     }
@@ -53,9 +43,9 @@ fun App() {
         },
         content = {
                   when(selectedRoute.value){
-                      Routes.MenuPage.route -> MenuPage()
+                      Routes.MenuPage.route -> MenuPage(dataManager)
                       Routes.OfferPage.route -> OfferPage()
-                      Routes.OrderPage.route -> OrderPage()
+                      Routes.OrderPage.route -> OrderPage(dataManager)
                       Routes.InfoPage.route -> InfoPage()
                   }
         },

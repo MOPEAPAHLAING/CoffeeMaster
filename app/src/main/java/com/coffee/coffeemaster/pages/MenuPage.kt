@@ -23,14 +23,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.coffee.coffeemaster.DataManager
 import com.coffee.coffeemaster.Product
 import com.coffee.coffeemaster.R
 import com.coffee.coffeemaster.ui.theme.Alternative1
 import com.coffee.coffeemaster.ui.theme.CardBackground
 
-@Preview
+
 @Composable
-fun MenuPage() {
+fun MenuPage(dataManager: DataManager) {
     LazyColumn {
         items(count = 5){
             Card(
