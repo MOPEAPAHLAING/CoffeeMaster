@@ -16,14 +16,18 @@ class DataManager(app:Application):AndroidViewModel(app) {
         fetchData()
     }
 
-    fun fetchData(){
-        viewModelScope.launch {
-            menu = API.menuService.fetchMenu()
+    private fun fetchData() {
+        try {
+            viewModelScope.launch {
+                menu = API.menuService.fetchMenu()
+            }
+        } catch (ex: Exception) {
+            //TODO: create other state variable for error
         }
     }
 
 
-    fun cardAdd(product: Product){
+    fun cartAdd(product: Product){
         var found = false
         cart.forEach {
             if(product.id == it.product.id){
@@ -36,13 +40,13 @@ class DataManager(app:Application):AndroidViewModel(app) {
         }
     }
 
-    fun cardRemove(product: Product){
+    fun cartRemove(product: Product){
         val aux = cart.toMutableList()
         aux.removeAll {it.product.id == product.id}
         cart = listOf(*aux.toTypedArray())
     }
 
-    fun cardClear(){
+    fun cartClear(){
         cart = listOf()
     }
 }
